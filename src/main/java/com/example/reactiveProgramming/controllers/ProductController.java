@@ -7,6 +7,7 @@ import com.example.reactiveProgramming.services.interfaces.IProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -31,6 +32,21 @@ public class ProductController {
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()));
     }
 
+
+    @GetMapping()
+    public Flux<Product> getAllProducts(){
+        return productService.getAllProducts();
+    }
+
+
+    @PutMapping("/{productId}")
+    public Mono<ResponseEntity<Product>> updateProduct(
+            @PathVariable String productId,
+            @RequestBody Mono<ProductRequestDto> productRequestDtoMono) {
+        return productService.updateProduct(productId, productRequestDtoMono)
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
 
 
 

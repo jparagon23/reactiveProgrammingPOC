@@ -2,13 +2,17 @@ package com.example.reactiveProgramming.services;
 
 
 import com.example.reactiveProgramming.dtos.ProductCreationDTO;
+import com.example.reactiveProgramming.dtos.ProductRequestDto;
 import com.example.reactiveProgramming.entities.Product;
 import com.example.reactiveProgramming.repositories.IProductDao;
 import com.example.reactiveProgramming.services.interfaces.IProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -27,5 +31,23 @@ public class ProductService implements IProductService {
     @Transactional
     public Mono<Void> deleteProduct(String productId) {
         return productDao.deleteById(productId);
+    }
+
+    @Override
+    public Flux<Product> getAllProducts() {
+        return productDao.findAll();
+    }
+
+    public Mono<Product> updateProduct(String productId, Mono<ProductRequestDto> productRequestDtoMono) {
+        return productDao.findById(productId)
+                .flatMap(existingProduct -> productRequestDtoMono
+                        .map(productRequestDto -> {
+                            existingProduct.setName(productRequestDto.getName());
+                            existingProduct.setEan(productRequestDto.getEan());
+                            existingProduct.setCost(productRequestDto.getCost());
+                            existingProduct.setPrice(productRequestDto.getPrice());
+                            return existingProduct;
+                        }))
+                .flatMap(productDao::save);
     }
 }
