@@ -1,4 +1,4 @@
-package com.example.reactiveProgramming.dtos;
+package com.arquisoft.reactiveprogramming.dtos;
 
 import lombok.Data;
 

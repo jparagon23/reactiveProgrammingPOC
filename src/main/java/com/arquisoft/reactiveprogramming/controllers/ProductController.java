@@ -1,9 +1,9 @@
-package com.example.reactiveProgramming.controllers;
+package com.arquisoft.reactiveprogramming.controllers;
 
-import com.example.reactiveProgramming.dtos.ProductCreationDTO;
-import com.example.reactiveProgramming.dtos.ProductRequestDto;
-import com.example.reactiveProgramming.entities.Product;
-import com.example.reactiveProgramming.services.interfaces.IProductService;
+import com.arquisoft.reactiveprogramming.dtos.ProductCreationDTO;
+import com.arquisoft.reactiveprogramming.dtos.ProductRequestDto;
+import com.arquisoft.reactiveprogramming.entities.Product;
+import com.arquisoft.reactiveprogramming.services.interfaces.IProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +11,11 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/products")
 @AllArgsConstructor
+@RequestMapping("/products")
 public class ProductController {
 
-    private  final IProductService productService;
+    private final IProductService productService;
 
     @PostMapping
     public Mono<ProductCreationDTO> createProduct(@RequestBody Mono<ProductRequestDto> productRequestDtoMono) {
@@ -34,7 +34,7 @@ public class ProductController {
 
 
     @GetMapping()
-    public Flux<Product> getAllProducts(){
+    public Flux<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
@@ -49,8 +49,6 @@ public class ProductController {
     }
 
 
-
-
     private Product convertToProduct(ProductRequestDto productRequestDto) {
         return new Product(
                 productRequestDto.getName(),
@@ -63,8 +61,5 @@ public class ProductController {
     private Mono<ProductCreationDTO> handleException(Throwable ex) {
         return Mono.error(ex);
     }
-
-
-
 
 }

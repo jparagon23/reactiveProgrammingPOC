@@ -1,12 +1,12 @@
-package com.example.reactiveProgramming.entities;
+package com.arquisoft.reactiveprogramming.entities;
 
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("products")
 @Data
+@Document("products")
 public class Product {
     @Id
     private String id;

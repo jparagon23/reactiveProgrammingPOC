@@ -1,18 +1,16 @@
-package com.example.reactiveProgramming.services;
+package com.arquisoft.reactiveprogramming.services;
 
 
-import com.example.reactiveProgramming.dtos.ProductCreationDTO;
-import com.example.reactiveProgramming.dtos.ProductRequestDto;
-import com.example.reactiveProgramming.entities.Product;
-import com.example.reactiveProgramming.repositories.IProductDao;
-import com.example.reactiveProgramming.services.interfaces.IProductService;
+import com.arquisoft.reactiveprogramming.dtos.ProductCreationDTO;
+import com.arquisoft.reactiveprogramming.dtos.ProductRequestDto;
+import com.arquisoft.reactiveprogramming.repositories.IProductDao;
+import com.arquisoft.reactiveprogramming.services.interfaces.IProductService;
+import com.arquisoft.reactiveprogramming.entities.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Optional;
 
 @Component
 @AllArgsConstructor

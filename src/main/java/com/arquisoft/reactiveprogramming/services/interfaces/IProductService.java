@@ -1,13 +1,11 @@
-package com.example.reactiveProgramming.services.interfaces;
+package com.arquisoft.reactiveprogramming.services.interfaces;
 
 
-import com.example.reactiveProgramming.dtos.ProductCreationDTO;
-import com.example.reactiveProgramming.dtos.ProductRequestDto;
-import com.example.reactiveProgramming.entities.Product;
+import com.arquisoft.reactiveprogramming.dtos.ProductCreationDTO;
+import com.arquisoft.reactiveprogramming.dtos.ProductRequestDto;
+import com.arquisoft.reactiveprogramming.entities.Product;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Optional;
 
 public interface IProductService {
 
